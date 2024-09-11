@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Project dependencies
+    implementation project(':utilities')
+
+    // External dependencies
+    implementation 'org.seleniumhq.selenium:selenium-java:4.8.0'
+    implementation 'org.testng:testng:7.4.0'
+    implementation 'org.apache.commons:commons-text:1.9'
+
+    // JUnit 5 (for unit tests)
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+}
+
+test {
+    useTestNG() // for TestNG tests
+    useJUnitPlatform() // for JUnit 5 tests
+ testLogging {
+        events "passed", "failed", "skipped"
+        showStandardStreams = true
+    }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11) // or your Java version
+    }
+}
